@@ -1,5 +1,6 @@
 from locators.user_locators import UserLocstors
 from actions.user_actions import UserActions
+from utils.error_messages import message_test_user_data_in_account
 from utils.user_data import form_data, Credentials
 import pytest
 
@@ -36,7 +37,7 @@ class TestUserData:
         self.app.click_button(UserLocstors.search_user_button)
         self.app.click_button(UserLocstors.view_user_button)
         user_data = self.app.get_form_data()
-        assert user_data == list(form_data.values()), "данные пользователя не совпадают тестовыми данными"
+        assert user_data == list(form_data.values()), message_test_user_data_in_account
         self.app.logout()
 
         self.app.auth(Credentials.manager_login, Credentials.manager_password)
